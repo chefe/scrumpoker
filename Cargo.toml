@@ -1,0 +1,13 @@
+[package]
+name = "scrumpoker"
+version = "0.1.0"
+authors = ["chefe <hi@chefe.io>"]
+edition = "2018"
+
+[dependencies.gtk]
+version = "0.8.1"
+features = ["v3_24"]
+
+[dependencies.gio]
+version = "0.8.1"
+features = ["v2_60"]
