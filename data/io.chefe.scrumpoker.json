@@ -1,0 +1,41 @@
+{
+    "app-id" : "io.chefe.scrumpoker",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.34",
+    "sdk": "org.gnome.Sdk",
+    "sdk-extensions" : [
+        "org.freedesktop.Sdk.Extension.rust-stable"
+    ],
+    "command" : "io.chefe.scrumpoker",
+    "finish-args" : [
+        "--socket=x11",
+        "--socket=wayland",
+        "--device=dri",
+        "--share=ipc"
+    ],
+    "build-options" : {
+        "append-path" : "/usr/lib/sdk/rust-stable/bin",
+        "build-args" : [
+            "--share=network"
+                                ],
+        "env" : {
+            "CARGO_HOME" : "/run/build/scrumpoker/cargo",
+            "RUSTFLAGS" : "--remap-path-prefix =../"
+        }
+    },
+    "modules" : [
+        {
+            "name" : "scrumpoker",
+            "buildsystem" : "simple",
+            "build-commands": [
+                "make install PREFIX=/app"
+            ],
+            "sources" : [
+                {
+                    "type" : "dir",
+                    "path" : ".."
+                }
+            ]
+        }
+    ]
+}

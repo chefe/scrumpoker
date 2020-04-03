@@ -1,1 +1,9 @@
+# Ignore cargo build folder
 /target
+
+# Ignore flatpak files
+/.flatpak-build-*
+/.flatpak-builder
+/.flatpak-repo
+/io.chefe.scrumpoker.*.flatpak
+

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Scrum Poker
+Icon=io.chefe.scrumpoker
+Exec=io.chefe.scrumpoker
+Terminal=false
+Type=Application
+Categories=Utility;GTK
+StartupNotify=false
