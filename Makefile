@@ -20,13 +20,13 @@ debug: target/debug/scrumpoker
 
 release: target/release/scrumpoker
 
-target/debug/scrumpoker: src
+target/debug/scrumpoker: src Cargo.lock Cargo.toml
 	cargo build
 
-target/release/scrumpoker: src
+target/release/scrumpoker: src Cargo.lock Cargo.toml
 	cargo build --release
 
-install: target/release/scrumpoker
+install: target/release/scrumpoker data
 	mkdir -p $(BIN_DIR)
 	$(INSTALL_PROGRAM) target/release/scrumpoker $(BIN_DIR)/io.chefe.scrumpoker
 	mkdir -p $(SHARE_DIR)/applications
@@ -40,7 +40,12 @@ uninstall:
 	rm -f $(SHARE_DIR)/icons/hicolor/scalable/apps/io.chefe.scrumpoker.svg
 	rm -f $(BIN_DIR)/io.chefe.scrumpoker
 
-flatpak:
+install-flatpak: io.chefe.scrumpoker.$(FLATPAK_ARCH).flatpak
+	flatpak install --user io.chefe.scrumpoker.$(FLATPAK_ARCH).flatpak
+
+flatpak: io.chefe.scrumpoker.$(FLATPAK_ARCH).flatpak
+
+io.chefe.scrumpoker.$(FLATPAK_ARCH).flatpak: src data Cargo.lock Cargo.toml
 	flatpak-builder --user --install-deps-from=flathub --arch=$(FLATPAK_ARCH) --force-clean --repo=.flatpak-repo .flatpak-build-$(FLATPAK_ARCH) data/io.chefe.scrumpoker.json
 	flatpak build-bundle --arch=$(FLATPAK_ARCH) .flatpak-repo io.chefe.scrumpoker.$(FLATPAK_ARCH).flatpak io.chefe.scrumpoker
 
