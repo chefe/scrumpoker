@@ -1,5 +1,5 @@
 # scrumpoker
-A small app to help estimate the effort for a task.
+A small gtk app to help estimate the effort for a task.
 
 ## Installation via Make
 1. Verify `make` and `cargo` are installed
